@@ -38,6 +38,25 @@ Theta2_grad = zeros(size(Theta2));
 %         variable J. After implementing Part 1, you can verify that your
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
+X = [ones(m, 1), X];
+hiddenLayerActivations = sigmoid(X * Theta1'); % [5000x401]*[401*25]
+
+hiddenLayerActivations = [ones(m, 1), hiddenLayerActivations];
+predictions = sigmoid(hiddenLayerActivations * Theta2'); % [5000x26]*[26x10] = [5000x10]
+
+Y = zeros(m, num_labels);
+for i = 1:m
+    Y(i, y(i)) = 1;
+end
+
+for i = 1:m
+    for k = 1:num_labels
+        J += (-Y(i, k) * log(predictions(i, k)) - (1 - Y(i, k)) * log(1 - predictions(i, k)));
+    end
+end
+
+J /= m;
+
 %
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of

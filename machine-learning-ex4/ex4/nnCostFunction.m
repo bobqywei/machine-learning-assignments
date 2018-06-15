@@ -57,6 +57,26 @@ end
 
 J /= m;
 
+
+regTerm = 0;
+
+for j = 1:size(Theta1, 1)
+    for k = 2:size(Theta1, 2)
+        regTerm += (Theta1(j, k) ^ 2);
+    end
+end
+
+for j = 1:size(Theta2, 1)
+    for k = 2:size(Theta2, 2)
+        regTerm += (Theta2(j, k) ^ 2);
+    end
+end
+
+regTerm *= (lambda / (2*m));
+
+
+J += regTerm;
+
 %
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of

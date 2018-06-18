@@ -109,13 +109,13 @@ Theta2_grad /= m;
 
 for i = 1:rows(Theta1)
     for j = 2:columns(Theta1)
-        Theta1_grad += Theta1(i, j) * (lambda / m); 
+        Theta1_grad(i, j) += Theta1(i, j) * (lambda / m); 
     end
 end
 
 for i = 1:rows(Theta2)
     for j = 2:columns(Theta2)
-        Theta2_grad += Theta2(i, j) * (lambda / m); 
+        Theta2_grad(i, j) += Theta2(i, j) * (lambda / m); 
     end
 end
 
